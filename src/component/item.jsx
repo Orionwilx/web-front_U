@@ -1,6 +1,5 @@
 import React from 'react';
 
-const a = 3;
 const Item = props => {
 	return (
 		<>
