@@ -1,0 +1,23 @@
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: #282828;
+    color: #ffffff;
+   }
+   
+   .team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+   
+   .team-name {
+    font-size: 24px;
+    margin-bottom: 5px;
+   }
+   
+   .team-score {
+    font-size: 48px;
+   }

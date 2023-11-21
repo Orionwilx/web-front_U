@@ -1,0 +1,24 @@
+.navbar{
+    display: flex;
+    justify-content: right;
+    background-color: #01395a;
+}
+
+.navbar-list{
+    display: flex;    
+    height: 7vh;
+    width: 45%;
+    margin: 1rem;
+    align-items: center;
+    justify-content: space-between;    
+    background-color: #01395a;
+}
+
+.navbar-item {
+    list-style: none;
+    text-decoration: none;
+    font-size: 20px;
+}
+.navbar-item Link{
+    text-decoration: none;
+}
