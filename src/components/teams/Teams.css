@@ -1,38 +1,43 @@
 .App {
     text-align: center;
-   }
+}
    
 
-   .App-header {
-    background-color: #282c34;
+.App-header {
+    background-color: #122027;
     min-height: 10vh;
+    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     font-size: calc(10px + 2vmin);
     color: white;
-   }
-   
-   .App-main{
+
+}
+.App-header h1{
+    margin-left: 3%;
+}
+
+
+.App-main{
     display: flex;
     justify-content: center;
-   }
-   .container-main{
+}
+.container-main{
     width: 50%;
-    background-color: #a1a1a1;
-   }
-   .team {
+    background-color: #ffffff;
+}
+.team {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin: 1rem;
-   }
+}
    
-   .team img {
+.team img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     object-fit: fill;
-   }
+}

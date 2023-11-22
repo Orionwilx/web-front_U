@@ -1,5 +1,5 @@
 import React from 'react';
-import ResponsiveAppBar from '../navmui';
+import ResponsiveAppBar from '../nav/NavMui';
 import './index.css';
 
 const Match = () => {

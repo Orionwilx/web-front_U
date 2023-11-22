@@ -1,6 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import Home from './components/Teams';
+import Home from './components/teams/Teams';
 import Match from './components/matches/Match';
 import MatchResults from './components/matchesResults/MatchesResult';
 
