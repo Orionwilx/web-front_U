@@ -5,14 +5,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+
 import { useEffect, useState } from 'react';
 
 // Mis componentes
 import ResponsiveAppBar from '../nav/NavMui';
+import AddTeamDialog from './AddTeamDialog';
 
 import './Teams.css';
 
-const Team = ({ bandera, nombre, directorTecnico }) => (
+const Team = ({ id, bandera, nombre, directorTecnico, onDelete }) => (
 	<div className='team'>
 		<img className='logo' src={bandera} alt={nombre} />
 		<h2 className='name'> {nombre}</h2>
@@ -22,7 +24,7 @@ const Team = ({ bandera, nombre, directorTecnico }) => (
 				<Grid item container xs={6} alignItems='flex-end' direction='column'>
 					<Grid item>
 						<Tooltip title='Delete' placement='right-start'>
-							<Button>
+							<Button onClick={() => onDelete(id)}>
 								<DeleteIcon />
 							</Button>
 						</Tooltip>
@@ -35,11 +37,28 @@ const Team = ({ bandera, nombre, directorTecnico }) => (
 
 const Home = () => {
 	const [equipo, setEquipo] = useState([]);
+	const [open, setOpen] = useState(false);
+
 	const fetchData = () => {
 		return axios
 			.get('http://localhost:8080/api/v1/equipos')
 			.then(response => setEquipo(response.data))
 			.catch(console.log);
+	};
+
+	const deleteData = async idEquipo => {
+		try {
+			const response = await axios.delete(
+				`http://localhost:8080/api/v1/equipos/deleteById/${idEquipo}`,
+			);
+			console.log(response.data);
+
+			// Aquí puedes actualizar el estado y eliminar el equipo del estado.
+			// Por ejemplo: setEquipo(equipo.filter(equipo => equipo.id !== idEquipo));
+			setEquipo(equipo.filter(equipo => equipo.id !== idEquipo));
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
@@ -54,13 +73,20 @@ const Home = () => {
 			<section className='App-header'>
 				<h1 className='h1'>Equipos</h1>
 				<div className='header-button'>
-					<Button variant='text'>Add</Button>
+					<Button
+						variant='text'
+						onClick={() => setOpen(true)}
+						style={{ color: '#ffffff' }}
+					>
+						Add
+					</Button>
+					<AddTeamDialog open={open} handleClose={() => setOpen(false)} />
 				</div>
 			</section>
 			<main className='App-main'>
 				<div className='container-main'>
 					{equipo.map((team, index) => (
-						<Team key={team.id} {...team} />
+						<Team key={team.id} {...team} onDelete={deleteData} />
 					))}
 				</div>
 			</main>
