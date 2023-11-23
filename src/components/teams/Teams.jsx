@@ -52,9 +52,6 @@ const Home = () => {
 				`http://localhost:8080/api/v1/equipos/deleteById/${idEquipo}`,
 			);
 			console.log(response.data);
-
-			// Aquí puedes actualizar el estado y eliminar el equipo del estado.
-			// Por ejemplo: setEquipo(equipo.filter(equipo => equipo.id !== idEquipo));
 			setEquipo(equipo.filter(equipo => equipo.id !== idEquipo));
 		} catch (error) {
 			console.log(error);

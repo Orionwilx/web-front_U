@@ -37,7 +37,6 @@
    
 .team img {
     width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    height: 40px;
     object-fit: fill;
 }
