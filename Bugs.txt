@@ -1,3 +1,4 @@
 Pagina equipos
 
 No  resfresca cuando se agrega
+No actualiza

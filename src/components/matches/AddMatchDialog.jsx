@@ -19,7 +19,7 @@ const AddTeamDialog = ({ open, handleClose }) => {
 
 		try {
 			const response = await axios.post(
-				'http://localhost:8080/api/v1/equipos',
+				'http://localhost:8080/api/v1/partidos/',
 				equipo,
 			);
 			console.log(response.data);
@@ -31,10 +31,10 @@ const AddTeamDialog = ({ open, handleClose }) => {
 
 	return (
 		<Dialog open={open} onClose={handleClose}>
-			<DialogTitle>Agregar Equipo</DialogTitle>
+			<DialogTitle>Add Team</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
-					Escriba la informacion del nuevo equipos
+					Please fill in the team details below:
 				</DialogContentText>
 				<Box
 					component='form'
@@ -46,7 +46,7 @@ const AddTeamDialog = ({ open, handleClose }) => {
 						autoFocus
 						margin='dense'
 						id='name'
-						label='Nombre'
+						label='Team Name'
 						type='text'
 						fullWidth
 						value={nombre}

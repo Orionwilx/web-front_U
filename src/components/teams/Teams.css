@@ -22,10 +22,13 @@
 .App-main{
     display: flex;
     justify-content: center;
+    background-color: #122027;
 }
 .container-main{
     width: 50%;
-    background-color: #ffffff;
+    background-color: #0a2836;
+    color: #fff;
+    border-radius: 10px;
 }
 .team {
     display: flex;

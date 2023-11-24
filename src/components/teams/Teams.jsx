@@ -5,16 +5,17 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
-
+import SvgIcon from '@mui/material/SvgIcon';
 import { useEffect, useState } from 'react';
+import { LiaPenSolid } from 'react-icons/lia';
 
 // Mis componentes
 import ResponsiveAppBar from '../nav/NavMui';
 import AddTeamDialog from './AddTeamDialog';
-
 import './Teams.css';
+import PutForm from '../PutForm';
 
-const Team = ({ id, bandera, nombre, directorTecnico, onDelete }) => (
+const Team = ({ id, bandera, nombre, directorTecnico, onDelete, onPut }) => (
 	<div className='team'>
 		<img className='logo' src={bandera} alt={nombre} />
 		<h2 className='name'> {nombre}</h2>
@@ -28,6 +29,9 @@ const Team = ({ id, bandera, nombre, directorTecnico, onDelete }) => (
 								<DeleteIcon />
 							</Button>
 						</Tooltip>
+						<Tooltip title='Edit' placement='right-start'>
+							<LiaPenSolid color='green' size={20} onClick={() => onPut()} />
+						</Tooltip>
 					</Grid>
 				</Grid>
 			</Grid>
@@ -38,6 +42,7 @@ const Team = ({ id, bandera, nombre, directorTecnico, onDelete }) => (
 const Home = () => {
 	const [equipo, setEquipo] = useState([]);
 	const [open, setOpen] = useState(false);
+	const [idPut, setIdPut] = useState(0);
 
 	const fetchData = () => {
 		return axios
@@ -75,15 +80,47 @@ const Home = () => {
 						onClick={() => setOpen(true)}
 						style={{ color: '#ffffff' }}
 					>
-						Add
+						Agregar+
 					</Button>
 					<AddTeamDialog open={open} handleClose={() => setOpen(false)} />
 				</div>
 			</section>
 			<main className='App-main'>
+				{idPut !== 0 ? (
+					<PutForm
+						title='Editar equipo'
+						toggle={idPut}
+						get='http://localhost:8080/api/v1/equipos/'
+						put='http://localhost:8080/api/v1/equipos/actualizar/'
+						retur={() => {
+							setIdPut(0);
+							fetchData();
+						}}
+						fields={[
+							{
+								name: 'nombre',
+								labelName: 'Nombre',
+							},
+							{
+								name: 'bandera',
+								labelName: 'Bandera',
+							},
+							{
+								name: 'directorTecnico',
+								labelName: 'director tecnico',
+							},
+						]}
+					/>
+				) : null}
 				<div className='container-main'>
 					{equipo.map((team, index) => (
-						<Team key={team.id} {...team} onDelete={deleteData} />
+						<Team
+							key={team.id}
+							{...team}
+							onDelete={deleteData}
+							id={team.id}
+							onPut={() => setIdPut(team.id)}
+						/>
 					))}
 				</div>
 			</main>

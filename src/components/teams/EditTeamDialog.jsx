@@ -9,17 +9,17 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
 
-const AddTeamDialog = ({ open, handleClose }) => {
+const EditTeamDialog = ({ open, handleClose }) => {
 	const [nombre, setNombre] = useState('');
 	const [directorTecnico, setDirectorTecnico] = useState('');
 	const [bandera, setBandera] = useState('');
 
-	const handleSubmit = async e => {
+	const handleSubmit = async idPartido => {
 		const equipo = { nombre, directorTecnico, bandera };
 
 		try {
-			const response = await axios.post(
-				'http://localhost:8080/api/v1/equipos',
+			const response = await axios.put(
+				`http://localhost:8080/api/v1/partidos/actualizar/${idPartido}`,
 				equipo,
 			);
 			console.log(response.data);
@@ -31,7 +31,7 @@ const AddTeamDialog = ({ open, handleClose }) => {
 
 	return (
 		<Dialog open={open} onClose={handleClose}>
-			<DialogTitle>Agregar Equipo</DialogTitle>
+			<DialogTitle>Editar Equipo</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
 					Escriba la informacion del nuevo equipos
@@ -84,4 +84,4 @@ const AddTeamDialog = ({ open, handleClose }) => {
 	);
 };
 
-export default AddTeamDialog;
+export default EditTeamDialog;

@@ -2,7 +2,7 @@
     background-color: #122027;
     min-height: 10vh;
     width: 100%;
-    display: block;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: calc(10px + 2vmin);
@@ -11,15 +11,21 @@
 
 .name-matchs h2{
     margin-left: 3%;
-    margin-bottom: 30px;
-    
 }
 
-.name-matchs ul{
-    margin-right: 3%;
+.name-matchs_list{
+    width: 100%;
+    display: block;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2161b4;
+}
+.name-matchs_list ul{    
+    margin-right: 14%;
     list-style: none;
     display: flex;
     justify-content: space-between;
+    color: #fff;
 }
 
 .matchs{
